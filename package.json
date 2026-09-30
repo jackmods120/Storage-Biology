@@ -1,1 +1,1 @@
-{"name":"jack-storage-server","private":true,"version":"1.0.0"}
+{"name":"jack-storage-server","private":true,"version":"1.0.0","dependencies":{"@vercel/blob":"^1.0.0"}}
