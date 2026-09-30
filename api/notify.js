@@ -7,7 +7,8 @@ module.exports = async function handler(req, res) {
   cors(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
-  if (!(await verifyAdmin(req))) return res.status(401).json({ error: 'Not admin' });
+  const who = await verifyAdmin(req);
+  if (!who.email) return res.status(400).json({ error: who.reason });
   const T = process.env.TELEGRAM_BOT_TOKEN, C = process.env.TELEGRAM_CHANNEL_ID;
   if (!T || !C) return res.status(200).json({ ok: false, skipped: true });
   try {
